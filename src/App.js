@@ -1,9 +1,17 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import Login from "./components/Login";
 
 function App() {
   return (
     <div className="App">
-      <h3> 유튭& 디즈니 클론 🧨</h3>
+      <Router>
+        <switch>
+          <Route exact path="/">
+            <Login test="바부" />
+          </Route>
+        </switch>
+      </Router>
     </div>
   );
 }
