@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import Header from "./components/Header";
+import Home from "./components/Home";
 function App() {
   return (
     <div className="App">
@@ -9,7 +10,10 @@ function App() {
         <Header />
         <switch>
           <Route exact path="/">
-            <Login test="바부" />
+            <Login />
+          </Route>
+          <Route path="/home">
+            <Home />
           </Route>
         </switch>
       </Router>
