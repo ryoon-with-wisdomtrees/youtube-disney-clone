@@ -1,0 +1,22 @@
+img inset 뭔지
+display(block) 
+position(relative)
+position: absolute; 차이
+  object-fit: cover;
+transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 500ms ease-in-out 0s;
+overflow: hidden;
+  &:after 
+ overflow-x: hidden;
+padding, margin 차이
+ opacity: 1;
+    z-index: -1;
+
+height 100vh, 100% 100px 차이
+
+  &:hover {
+    box-shadow: rgb(0 0 0 /80%) 0px 40px 58px -16px,
+      rgb(0 0 0/ 72%) 0px 30px 22px -10px;
+    transform: scale(1.05);
+    border-color: rgba(249, 249, 249, 0.9); //탁한~하양
+  }

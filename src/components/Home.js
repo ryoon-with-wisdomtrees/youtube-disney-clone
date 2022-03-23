@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import ImgSlider from "./ImgSlider";
+import Vieweres from "./Viewers";
+import Recommends from "./Recommends";
 const Home = (props) => {
   return (
     <Container>
       <ImgSlider />
+      <Vieweres />
+      <Recommends />
     </Container>
   );
 };
@@ -24,14 +28,5 @@ const Container = styled.main`
     opacity: 1;
     z-index: -1;
   }
-
-  /* display: flex;
-  background: url("/images/home-background.png");
-  border: 1px solid white;
-  z-index: 1px;
-  width: 100%;
-  height: 100%;
-  margin-top: 100px;
-  margin-left: 10px; */
 `;
 export default Home;

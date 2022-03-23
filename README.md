@@ -4,8 +4,7 @@
 
 ### `설치한 모듈`
 
-```
-npm install @reduxjs/toolkit
+```npm install @reduxjs/toolkit
 npm i react-router-dom@5.2.0
 npm i react-dom
 npm i firebase
