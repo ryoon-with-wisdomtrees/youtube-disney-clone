@@ -5,7 +5,52 @@ import Recommends from "./Recommends";
 import NewDisney from "./NewDisney";
 import Originals from "./Originals";
 import Trending from "./Trending";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import database from "../firebase";
+import { setMovies } from "../features/movie/movieSlice";
+import { selectUserName } from "../features/user/userSlice";
+
 const Home = (props) => {
+  const dispatch = useDispatch();
+  const userName = useSelector(selectUserName);
+  let recommends = [];
+  let newDisneys = [];
+  let originals = [];
+  let trendings = [];
+
+  useEffect(() => {
+    database.collection("movies").onSnapshot((snapshot) => {
+      snapshot.docs.map((doc) => {
+        switch (doc.data().type) {
+          case "recommend":
+            recommends.push({ id: doc.id, ...doc.data() });
+            break;
+          case "new":
+            newDisneys.push({ id: doc.id, ...doc.data() });
+            break;
+          case "trending":
+            trendings.push({ id: doc.id, ...doc.data() });
+            break;
+          case "original":
+            originals.push({ id: doc.id, ...doc.data() }); //spread operators
+            break;
+        }
+      });
+    });
+  });
+
+  dispatch(
+    setMovies(
+      {
+        recommend: recommends,
+        NewDisney: newDisneys,
+        original: originals,
+        trending: trendings,
+      },
+      [userName] //유저 로그인 되면, 파이어베이스 store에서 이거 끄집어와서 리덕스store에다가 store
+    )
+  );
   return (
     <Container>
       <ImgSlider />

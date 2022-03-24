@@ -10,7 +10,7 @@ import {
   setUserLoginDetails,
   setSignOutState,
 } from "../features/user/userSlice";
-import { auth, provider, storage } from "../firebase_";
+import { auth, provider, storage } from "../firebase";
 // import db from "../firebase";
 
 const Header = (props) => {

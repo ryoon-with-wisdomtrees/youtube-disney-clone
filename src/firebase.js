@@ -1,11 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  // initializeAuth,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import "firebase/compat/auth";
 
 const firebaseConfig = {
@@ -24,7 +19,7 @@ const firebaseConfig = {
 // 내가 마주한 에러 https://stackoverflow.com/questions/70445014/module-not-found-error-package-path-is-not-exported-from-package
 // ㄴ----->  업데이트 이후, 변경된 신택스를 사용하라는 힌트를 얻음
 const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
+const database = getFirestore(firebaseApp);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 // const signInWithPopup = signInWithPopup(auth, provider);
@@ -33,4 +28,4 @@ const storage = getFirestore();
 // console.log("db", db);
 
 export { auth, provider, storage };
-export default db;
+export default database;
