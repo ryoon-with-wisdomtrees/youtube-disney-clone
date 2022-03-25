@@ -4,40 +4,20 @@ import { useSelector } from "react-redux";
 import { selectRecommend } from "../features/movie/movieSlice";
 const Recommends = (props) => {
   const movies = useSelector(selectRecommend);
-
+  console.log(movies, ":🎨");
   return (
     <Container>
       <h4> Recommends</h4>
       <Content>
         {movies &&
-          movies.map((movie, key) => {
+          movies.map((movie, key) => (
             <Wrap key={key}>
               {movie.id}
-              <Link to={"/datail/" + movie.id}>
+              <Link to={`/datail/` + movie.id}>
                 <img src={movie.cardImg} alt="{movie.title" />
               </Link>
-            </Wrap>;
-          })}
-        {/* <Wrap>
-          <Link to="/">
-            <img src="" alt="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img src="" alt="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img src="" alt="" />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img src="" alt="" />
-          </Link>
-        </Wrap> */}
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );

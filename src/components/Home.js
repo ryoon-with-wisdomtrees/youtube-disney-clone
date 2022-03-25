@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ImgSlider from "./ImgSlider";
-import Vieweres from "./Viewers";
+import Viewers from "./Viewers";
 import Recommends from "./Recommends";
 import NewDisney from "./NewDisney";
 import Originals from "./Originals";
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import db from "../firebase";
 import { setMovies } from "../features/movie/movieSlice";
 import { selectUserName } from "../features/user/userSlice";
-
+import { collection, query, onSnapshot } from "firebase/firestore";
 const Home = (props) => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
@@ -19,10 +19,11 @@ const Home = (props) => {
   let originals = [];
   let trendings = [];
 
+  const q = query(collection(db, "movies"));
+
   useEffect(() => {
-    db.collection("movies").onSnapshot((snapshot) => {
+    onSnapshot(q, (snapshot) => {
       snapshot.docs.map((doc) => {
-        console.log(recommends);
         switch (doc.data().type) {
           case "recommend":
             recommends = [...recommends, { id: doc.id, ...doc.data() }];
@@ -43,24 +44,24 @@ const Home = (props) => {
             break;
         }
       });
+      dispatch(
+        setMovies(
+          {
+            recommend: recommends,
+            newDisney: newDisneys,
+            original: originals,
+            trending: trendings,
+          },
+          [userName] //유저 로그인 되면, 파이어베이스 store에서 이거 끄집어와서 리덕스store에다가 store
+        )
+      );
     });
   });
 
-  dispatch(
-    setMovies(
-      {
-        recommend: recommends,
-        NewDisney: newDisneys,
-        original: originals,
-        trending: trendings,
-      },
-      [userName] //유저 로그인 되면, 파이어베이스 store에서 이거 끄집어와서 리덕스store에다가 store
-    )
-  );
   return (
     <Container>
       <ImgSlider />
-      <Vieweres />
+      <Viewers />
       <Recommends />
       <NewDisney />
       <Originals />

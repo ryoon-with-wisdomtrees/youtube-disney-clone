@@ -3,19 +3,23 @@ import "./App.css";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Detail from "./components/Detail";
 function App() {
   return (
     <div className="App">
       <Router>
         <Header />
-        <switch>
+        <Switch>
           <Route exact path="/">
             <Login />
           </Route>
           <Route path="/home">
             <Home />
           </Route>
-        </switch>
+          <Route path="/datail/:id">
+            <Detail />
+          </Route>
+        </Switch>
       </Router>
     </div>
   );

@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import database from "../firebase";
+import db from "../firebase";
+import { collection, query, onSnapshot } from "firebase/firestore";
 
 const Detail = (props) => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState({});
+  const q = query(collection(db, "movies"));
 
   useEffect(() => {
-    db.collection("movies")
+    query(collection(db, "movies"))
       .doc(id)
       .get()
       .then((doc) => {

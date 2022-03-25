@@ -5,12 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   selectUserName,
-  selectUserEmail,
   selectUserPhoto,
   setUserLoginDetails,
   setSignOutState,
 } from "../features/user/userSlice";
-import { auth, provider, storage } from "../firebase";
+import { auth, provider } from "../firebase";
 // import db from "../firebase";
 
 const Header = (props) => {
@@ -30,6 +29,7 @@ const Header = (props) => {
       }
     });
   }, [userName]);
+
   const handleAuth = () => {
     if (!userName) {
       signInWithPopup(auth, provider)
