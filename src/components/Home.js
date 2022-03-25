@@ -7,7 +7,7 @@ import Originals from "./Originals";
 import Trending from "./Trending";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import database from "../firebase";
+import db from "../firebase";
 import { setMovies } from "../features/movie/movieSlice";
 import { selectUserName } from "../features/user/userSlice";
 
@@ -20,20 +20,26 @@ const Home = (props) => {
   let trendings = [];
 
   useEffect(() => {
-    database.collection("movies").onSnapshot((snapshot) => {
+    db.collection("movies").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
+        console.log(recommends);
         switch (doc.data().type) {
           case "recommend":
-            recommends.push({ id: doc.id, ...doc.data() });
+            recommends = [...recommends, { id: doc.id, ...doc.data() }];
             break;
+
           case "new":
-            newDisneys.push({ id: doc.id, ...doc.data() });
+            newDisneys = [...newDisneys, { id: doc.id, ...doc.data() }];
             break;
-          case "trending":
-            trendings.push({ id: doc.id, ...doc.data() });
-            break;
+
           case "original":
-            originals.push({ id: doc.id, ...doc.data() }); //spread operators
+            originals = [...originals, { id: doc.id, ...doc.data() }];
+            break;
+
+          case "trending":
+            trendings = [...trendings, { id: doc.id, ...doc.data() }];
+            break;
+          default:
             break;
         }
       });
