@@ -1,30 +1,35 @@
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import db from "../firebase";
-import { collection, query, onSnapshot } from "firebase/firestore";
-
 const Detail = (props) => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState({});
-  const q = query(collection(db, "movies"));
+
+  console.log("##########id######,", { id });
+  const movieCollectionRef = collection(db, "movies");
+
+  const q = query(movieCollectionRef, where("id", "==", { id }));
+  const _query = query(collection(db, "movies"));
 
   useEffect(() => {
-    query(collection(db, "movies"))
-      .doc(id)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
+    onSnapshot(_query, (snapshot) => {
+      snapshot.docs.map((doc) => {
+        if (doc.id === id) {
           setDetailData(doc.data());
-        } else {
-          console.log("no such document in firebase 🔥");
         }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
       });
+    });
   }, [id]);
-
+  //만족스럽지는 않지만... 기존문법으로 안되는 부분 일단 전체 데이터 다 긁어온 후에
+  // id값에 맞는 데이터로 세팅하는 것으로 변경
   return (
     <Container>
       <Background>

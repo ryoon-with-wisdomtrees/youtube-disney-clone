@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { selectNewDisney } from "../features/movie/movieSlice";
 const NewDisney = (props) => {
   const movies = useSelector(selectNewDisney);
-  console.log(movies, "NewDisney__");
   return (
     <Container>
       <h4>New to Disney+</h4>

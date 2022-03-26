@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectRecommend } from "../features/movie/movieSlice";
 const Recommends = (props) => {
   const movies = useSelector(selectRecommend);
-  console.log(movies, ":🎨");
+  console.log(movies, ":Recommends🎨");
   return (
     <Container>
       <h4> Recommends</h4>
