@@ -11,12 +11,13 @@ import styled from "styled-components";
 import db from "../firebase";
 const Detail = (props) => {
   const { id } = useParams();
+  console.log("typeof ", typeof id);
   const [detailData, setDetailData] = useState({});
 
   console.log("##########id######,", { id });
   const movieCollectionRef = collection(db, "movies");
 
-  const q = query(movieCollectionRef, where("id", "==", { id }));
+  const q = query(movieCollectionRef, where("id", "==", id));
   const _query = query(collection(db, "movies"));
 
   useEffect(() => {
