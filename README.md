@@ -1,7 +1,7 @@
 # Disney Plus Clone Readme
 
 - 디즈니플러스 클론 웹앱 **[✨ Live Demo](https://disneyplus-clone-94df9.web.app/)**
-- **참고한 영상** [ Build a Spotify Clone with REACT JS for Beginners](https://youtu.be/pnkuI8KXW_8)
+- **참고한 영상** [ Build Disney+ with React JS (Firebase + Styled Components + Redux)](https://www.youtube.com/watch?v=R_OERlafbmw)
 
 ## `CheckPoint`
 
