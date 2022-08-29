@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Router>
         <Header />
+        <Wrapper>
         <Switch>
           <Route exact path="/">
             <Login />
